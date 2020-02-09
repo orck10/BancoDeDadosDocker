@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  mysql:
+    container_name: basemysql
+    restart: always
+    build:
+      context: ./mysqlDB
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456' 
+      MYSQL_USER: 'root'
+      MYSQL_PASS: 'pass'
+
+  postgres:
+    container_name: basepostgres
+    restart: always
+    build: 
+      context: ./postgresDB
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    environment:
+      PGDATABASE: 'mysqlDB'
+      PGUSER: 'orck10'
+      PGPASSWORD: '123456'
